@@ -1,0 +1,342 @@
+invoice,amount,date,customer,vendor
+INV-8000,4269.71,2026-08-08,Ravi Rao,Flipkart Internet
+INV-8001,11161.62,2026-08-18,Sneha Bose,Swiggy
+INV-8002,669.42,2026-08-03,Aman Kapoor,Flipkart Internet
+INV-8003,9109.48,2026-08-18,Divya Joshi,Zomato
+INV-8004,3461.74,2026-08-19,Riya Kapoor,Zomato
+INV-8005,12125.93,2026-08-23,Ravi Malhotra,Myntra Designs
+INV-8006,2500.25,2026-08-25,Aditya Nair,Nykaa E-Retail
+INV-8007,5822.3,2026-08-12,Sneha Verma,BigBasket
+INV-8008,12145.31,2026-08-24,Neha Nair,BigBasket
+INV-8009,14602.09,2026-08-13,Riya Verma,Ola Cabs
+INV-8010,12475.02,2026-08-20,Riya Nair,Flipkart Internet
+INV-8011,10627.37,2026-08-02,Aman Reddy,BigBasket
+INV-8012,12858.56,2026-08-04,Meera Verma,Zomato
+INV-8013,9607.77,2026-08-12,Rohan Menon,Nykaa E-Retail
+INV-8014,3299.91,2026-08-09,Kavya Gupta,Swiggy
+INV-8015,2732.02,2026-08-24,Neha Bose,Flipkart Internet
+INV-8016,5815.32,2026-08-21,Anita Menon,Zomato
+INV-8017,4998.71,2026-08-25,Divya Bose,Uber India
+INV-8018,674.12,2026-08-11,Divya Singh,Amazon Seller Services
+INV-8019,3321.76,2026-08-19,Rohan Verma,Nykaa E-Retail
+INV-8020,7588.12,2026-08-21,Karan Bose,BigBasket
+INV-8021,2265.67,2026-08-24,Vikram Nair,Ola Cabs
+INV-8022,11255.55,2026-08-14,Riya Nair,Uber India
+INV-8023,3445.17,2026-08-05,Suresh Gupta,PharmEasy
+INV-8024,11385.33,2026-08-04,Ishita Verma,Uber India
+INV-8025,10270.8,2026-08-20,Anita Malhotra,Swiggy
+INV-8026,9018.74,2026-08-15,Suresh Kapoor,Flipkart Internet
+INV-8027,12939.4,2026-08-01,Rohan Joshi,Uber India
+INV-8028,4148.28,2026-08-21,Riya Malhotra,Flipkart Internet
+INV-8029,6633.96,2026-08-15,Sneha Nair,BigBasket
+INV-8030,11476.8,2026-08-17,Rohan Joshi,Amazon Seller Services
+INV-8031,9656.09,2026-08-20,Meera Singh,Flipkart Internet
+INV-8032,11484.92,2026-08-18,Vikram Gupta,Zomato
+INV-8033,4996.83,2026-08-01,Ravi Chatterjee,Uber India
+INV-8034,12140.07,2026-08-08,Kavya Singh,Flipkart Internet
+INV-8035,14214.8,2026-08-03,Divya Chatterjee,Amazon Seller Services
+INV-8036,8083.58,2026-08-05,Arjun Malhotra,Ola Cabs
+INV-8037,2643.04,2026-08-17,Ishita Joshi,Swiggy
+INV-8038,13947.85,2026-08-25,Pooja Reddy,PharmEasy
+INV-8039,14928.21,2026-08-21,Meera Kapoor,Zomato
+INV-8040,6881.45,2026-08-08,Nikhil Joshi,BigBasket
+INV-8041,510.33,2026-08-18,Arjun Gupta,Zomato
+INV-8042,305.43,2026-08-23,Aman Reddy,Zomato
+INV-8043,13600.12,2026-08-11,Divya Verma,Amazon Seller Services
+INV-8044,4320.74,2026-08-16,Manoj Reddy,Flipkart Internet
+INV-8045,10905.34,2026-08-19,Riya Iyer,Zomato
+INV-8046,11812.15,2026-08-26,Ishita Reddy,PharmEasy
+INV-8047,1633.67,2026-08-14,Karan Verma,Nykaa E-Retail
+INV-8048,7111.43,2026-08-24,Pooja Kapoor,BigBasket
+INV-8049,6158.2,2026-08-11,Sneha Sharma,Amazon Seller Services
+INV-8050,3014.28,2026-08-15,Divya Reddy,Flipkart Internet
+INV-8051,4321.75,2026-08-08,Pooja Iyer,Swiggy
+INV-8052,12947.83,2026-08-18,Nikhil Malhotra,Flipkart Internet
+INV-8053,14989.38,2026-08-01,Priya Bose,Flipkart Internet
+INV-8054,6214.33,2026-08-16,Divya Iyer,Flipkart Internet
+INV-8055,2635.79,2026-08-01,Suresh Sharma,Zomato
+INV-8056,11819.7,2026-08-10,Rohan Malhotra,Nykaa E-Retail
+INV-8057,10832.16,2026-08-05,Riya Bose,Nykaa E-Retail
+INV-8058,14536.87,2026-08-19,Meera Reddy,Zomato
+INV-8059,4840.66,2026-08-02,Priya Rao,Uber India
+INV-8060,13806.85,2026-08-17,Ishita Joshi,PharmEasy
+INV-8061,1384.73,2026-08-06,Priya Joshi,Swiggy
+INV-8062,10192.82,2026-08-08,Neha Verma,Flipkart Internet
+INV-8063,3843.23,2026-08-20,Sneha Chatterjee,Nykaa E-Retail
+INV-8064,6403.95,2026-08-19,Neha Verma,Amazon Seller Services
+INV-8065,14033.59,2026-08-07,Manoj Gupta,PharmEasy
+INV-8066,6057.03,2026-08-22,Divya Nair,BigBasket
+INV-8067,13949.4,2026-08-03,Nikhil Gupta,Myntra Designs
+INV-8068,14977.12,2026-08-04,Nikhil Chatterjee,Amazon Seller Services
+INV-8069,7686.6,2026-08-05,Riya Reddy,Flipkart Internet
+INV-8070,5668.37,2026-08-06,Arjun Reddy,BigBasket
+INV-8071,4676.56,2026-08-26,Riya Rao,Ola Cabs
+INV-8072,12292.96,2026-08-10,Ravi Bose,Uber India
+INV-8073,1907.46,2026-08-04,Vikram Nair,Flipkart Internet
+INV-8074,4369.27,2026-08-07,Vikram Nair,Uber India
+INV-8075,9586.36,2026-08-09,Karan Bose,BigBasket
+INV-8076,13598.89,2026-08-02,Ishita Nair,Uber India
+INV-8077,4294.14,2026-08-01,Pooja Singh,Flipkart Internet
+INV-8078,14700.99,2026-08-06,Vikram Bose,BigBasket
+INV-8079,6529.19,2026-08-01,Riya Rao,Ola Cabs
+INV-8080,13578.05,2026-08-18,Arjun Rao,Flipkart Internet
+INV-8081,8376.92,2026-08-14,Kavya Chatterjee,Amazon Seller Services
+INV-8082,5596.21,2026-08-26,Priya Nair,Swiggy
+INV-8083,10294.27,2026-08-22,Kavya Reddy,Amazon Seller Services
+INV-8084,8485.84,2026-08-14,Kavya Malhotra,Flipkart Internet
+INV-8085,12996.03,2026-08-26,Vikram Reddy,PharmEasy
+INV-8086,2853.72,2026-08-11,Pooja Sharma,Swiggy
+INV-8087,2555.29,2026-08-23,Divya Nair,Nykaa E-Retail
+INV-8088,772.16,2026-08-16,Suresh Singh,Flipkart Internet
+INV-8089,13793.01,2026-08-12,Karan Singh,Zomato
+INV-8090,549.26,2026-08-07,Divya Reddy,Myntra Designs
+INV-8091,12992.29,2026-08-25,Aditya Nair,Nykaa E-Retail
+INV-8092,7738.71,2026-08-22,Kavya Bose,Myntra Designs
+INV-8093,1906.17,2026-08-09,Aditya Sharma,Uber India
+INV-8094,765.24,2026-08-20,Aman Nair,Swiggy
+INV-8095,11838.92,2026-08-14,Kavya Rao,Nykaa E-Retail
+INV-8096,5900.28,2026-08-19,Manoj Verma,PharmEasy
+INV-8097,10689.73,2026-08-01,Rohan Sharma,Zomato
+INV-8098,10847.28,2026-08-24,Riya Bose,Uber India
+INV-8099,1234.68,2026-08-22,Kavya Kapoor,Zomato
+INV-8100,10017.8,2026-08-04,Neha Gupta,BigBasket
+INV-8101,10069.68,2026-08-11,Manoj Nair,Myntra Designs
+INV-8102,2082.99,2026-08-14,Meera Joshi,Nykaa E-Retail
+INV-8103,8622.33,2026-08-13,Anita Chatterjee,Nykaa E-Retail
+INV-8104,4445.61,2026-08-14,Ravi Nair,Uber India
+INV-8105,4968.61,2026-08-15,Neha Bose,PharmEasy
+INV-8106,7202.63,2026-08-26,Karan Joshi,Ola Cabs
+INV-8107,7828.21,2026-08-21,Arjun Nair,Swiggy
+INV-8108,12312.49,2026-08-25,Aditya Verma,PharmEasy
+INV-8109,12136.94,2026-08-05,Meera Reddy,Zomato
+INV-8110,14762.24,2026-08-20,Priya Reddy,Amazon Seller Services
+INV-8111,13314.71,2026-08-19,Nikhil Kapoor,Flipkart Internet
+INV-8112,6114.26,2026-08-05,Suresh Menon,Zomato
+INV-8113,6491.59,2026-08-06,Sneha Malhotra,Amazon Seller Services
+INV-8114,8449.16,2026-08-04,Nikhil Sharma,Uber India
+INV-8115,7076.18,2026-08-17,Vikram Malhotra,Ola Cabs
+INV-8116,14260.54,2026-08-15,Neha Gupta,Uber India
+INV-8117,12492.25,2026-08-18,Manoj Kapoor,PharmEasy
+INV-8118,12949.99,2026-08-15,Anita Rao,Ola Cabs
+INV-8119,9637.03,2026-08-25,Divya Singh,Myntra Designs
+INV-8120,3740.08,2026-08-15,Ishita Bose,Uber India
+INV-8121,4220.66,2026-08-11,Meera Reddy,Flipkart Internet
+INV-8122,2431.44,2026-08-13,Arjun Iyer,Uber India
+INV-8123,6339.46,2026-08-11,Karan Verma,Swiggy
+INV-8124,1120.59,2026-08-14,Nikhil Kapoor,Uber India
+INV-8125,488.09,2026-08-25,Aman Rao,Nykaa E-Retail
+INV-8126,286.27,2026-08-12,Suresh Menon,PharmEasy
+INV-8127,13396.19,2026-08-14,Suresh Singh,Myntra Designs
+INV-8128,9127.74,2026-08-08,Riya Malhotra,Uber India
+INV-8129,6649.81,2026-08-01,Divya Nair,Ola Cabs
+INV-8130,10250.98,2026-08-13,Aditya Bose,Nykaa E-Retail
+INV-8131,14714.67,2026-08-18,Nikhil Iyer,Swiggy
+INV-8132,8552.57,2026-08-01,Suresh Chatterjee,Amazon Seller Services
+INV-8133,13029.27,2026-08-06,Pooja Iyer,Flipkart Internet
+INV-8134,5044.15,2026-08-15,Rohan Kapoor,Amazon Seller Services
+INV-8135,13218.55,2026-08-09,Aditya Malhotra,BigBasket
+INV-8136,1411.29,2026-08-01,Rohan Singh,Nykaa E-Retail
+INV-8137,3517.71,2026-08-03,Priya Gupta,Uber India
+INV-8138,3149.74,2026-08-01,Ravi Reddy,Amazon Seller Services
+INV-8139,2067.2,2026-08-22,Vikram Reddy,PharmEasy
+INV-8140,7081.97,2026-08-09,Aman Reddy,Flipkart Internet
+INV-8141,9186.87,2026-08-24,Anita Chatterjee,BigBasket
+INV-8142,1798.97,2026-08-01,Anita Nair,Flipkart Internet
+INV-8143,13638.7,2026-08-13,Aman Bose,Myntra Designs
+INV-8144,8962.64,2026-08-21,Karan Verma,Nykaa E-Retail
+INV-8145,11632.49,2026-08-22,Sneha Rao,Zomato
+INV-8146,14760.88,2026-08-26,Sneha Malhotra,PharmEasy
+INV-8147,6539.42,2026-08-12,Kavya Joshi,Amazon Seller Services
+INV-8148,5249.56,2026-08-14,Manoj Bose,Flipkart Internet
+INV-8149,14419.62,2026-08-21,Sneha Kapoor,Ola Cabs
+INV-8150,2806.0,2026-08-17,Vikram Kapoor,Ola Cabs
+INV-8151,13810.26,2026-08-25,Neha Malhotra,Myntra Designs
+INV-8152,12420.7,2026-08-19,Nikhil Kapoor,Ola Cabs
+INV-8153,3832.57,2026-08-03,Aditya Singh,Myntra Designs
+INV-8154,11306.8,2026-08-19,Nikhil Reddy,Myntra Designs
+INV-8155,623.79,2026-08-11,Suresh Gupta,PharmEasy
+INV-8156,5450.76,2026-08-09,Ishita Reddy,Swiggy
+INV-8157,10577.22,2026-08-09,Rohan Chatterjee,BigBasket
+INV-8158,14231.27,2026-08-03,Ravi Joshi,Uber India
+INV-8159,8416.16,2026-08-08,Pooja Menon,Zomato
+INV-8160,11935.2,2026-08-03,Ishita Menon,Ola Cabs
+INV-8161,10438.14,2026-08-10,Divya Kapoor,Myntra Designs
+INV-8162,8390.95,2026-08-12,Kavya Menon,PharmEasy
+INV-8163,5406.15,2026-08-15,Riya Gupta,Nykaa E-Retail
+INV-8164,3611.19,2026-08-24,Meera Nair,Myntra Designs
+INV-8165,11194.38,2026-08-25,Aditya Verma,Zomato
+INV-8166,11131.09,2026-08-09,Karan Reddy,Swiggy
+INV-8167,4387.66,2026-08-04,Manoj Chatterjee,PharmEasy
+INV-8168,5540.4,2026-08-10,Meera Reddy,Zomato
+INV-8169,4259.08,2026-08-02,Riya Iyer,Amazon Seller Services
+INV-8170,14172.47,2026-08-21,Meera Rao,Uber India
+INV-8171,380.54,2026-08-10,Sneha Singh,Ola Cabs
+INV-8172,5241.79,2026-08-02,Ishita Menon,Ola Cabs
+INV-8173,12367.13,2026-08-13,Ishita Verma,Myntra Designs
+INV-8174,9515.43,2026-08-02,Arjun Chatterjee,Ola Cabs
+INV-8175,8529.59,2026-08-10,Vikram Malhotra,Swiggy
+INV-8176,8459.04,2026-08-14,Divya Verma,Flipkart Internet
+INV-8177,9352.21,2026-08-25,Neha Malhotra,PharmEasy
+INV-8178,13645.77,2026-08-10,Suresh Menon,Uber India
+INV-8179,8615.28,2026-08-02,Pooja Nair,PharmEasy
+INV-8180,3274.47,2026-08-07,Sneha Malhotra,PharmEasy
+INV-8181,3749.24,2026-08-18,Arjun Iyer,Myntra Designs
+INV-8182,6245.47,2026-08-23,Anita Sharma,Flipkart Internet
+INV-8183,682.1,2026-08-10,Ishita Nair,PharmEasy
+INV-8184,10372.98,2026-08-09,Nikhil Verma,Myntra Designs
+INV-8185,1897.8,2026-08-08,Karan Kapoor,PharmEasy
+INV-8186,2304.24,2026-08-02,Rohan Singh,Swiggy
+INV-8187,11284.32,2026-08-19,Meera Chatterjee,Swiggy
+INV-8188,7136.2,2026-08-10,Nikhil Verma,Myntra Designs
+INV-8189,8191.27,2026-08-15,Rohan Joshi,Nykaa E-Retail
+INV-8190,13363.35,2026-08-24,Neha Sharma,Flipkart Internet
+INV-8191,581.83,2026-08-08,Neha Nair,BigBasket
+INV-8192,14993.67,2026-08-22,Aman Sharma,PharmEasy
+INV-8193,11493.78,2026-08-06,Aman Sharma,Myntra Designs
+INV-8194,6744.44,2026-08-09,Manoj Bose,Ola Cabs
+INV-8195,9594.45,2026-08-16,Aman Kapoor,Swiggy
+INV-8196,6242.96,2026-08-11,Ishita Gupta,Flipkart Internet
+INV-8197,6291.76,2026-08-16,Anita Gupta,Flipkart Internet
+INV-8198,11455.16,2026-08-02,Suresh Singh,Myntra Designs
+INV-8199,3934.76,2026-08-04,Arjun Gupta,Ola Cabs
+INV-8200,14824.15,2026-08-22,Manoj Singh,Nykaa E-Retail
+INV-8201,1001.27,2026-08-17,Nikhil Kapoor,Uber India
+INV-8202,7577.2,2026-08-15,Neha Malhotra,BigBasket
+INV-8203,8328.0,2026-08-10,Karan Nair,Amazon Seller Services
+INV-8204,626.3,2026-08-21,Ishita Verma,Ola Cabs
+INV-8205,2543.16,2026-08-18,Divya Rao,PharmEasy
+INV-8206,1578.59,2026-08-04,Riya Kapoor,Amazon Seller Services
+INV-8207,12515.55,2026-08-16,Sneha Bose,Ola Cabs
+INV-8208,4245.96,2026-08-16,Manoj Rao,Myntra Designs
+INV-8209,8358.27,2026-08-13,Divya Menon,Ola Cabs
+INV-8210,11244.88,2026-08-05,Neha Joshi,Zomato
+INV-8211,11891.88,2026-08-14,Rohan Malhotra,Flipkart Internet
+INV-8212,12343.95,2026-08-10,Manoj Nair,BigBasket
+INV-8213,14983.75,2026-08-16,Aman Chatterjee,Myntra Designs
+INV-8214,7367.74,2026-08-11,Nikhil Joshi,Swiggy
+INV-8215,6938.56,2026-08-11,Riya Kapoor,Uber India
+INV-8216,5867.35,2026-08-25,Divya Chatterjee,Zomato
+INV-8217,11221.38,2026-08-23,Priya Gupta,Nykaa E-Retail
+INV-8218,11927.22,2026-08-21,Suresh Bose,Nykaa E-Retail
+INV-8219,2067.57,2026-08-19,Ishita Sharma,Swiggy
+INV-8220,12706.43,2026-08-04,Sneha Singh,BigBasket
+INV-8221,10891.89,2026-08-14,Nikhil Sharma,Uber India
+INV-8222,11766.36,2026-08-09,Arjun Menon,Swiggy
+INV-8223,6082.15,2026-08-03,Neha Rao,BigBasket
+INV-8224,14321.22,2026-08-21,Riya Kapoor,BigBasket
+INV-8225,9338.02,2026-08-08,Riya Sharma,Ola Cabs
+INV-8226,1536.7,2026-08-04,Divya Rao,Myntra Designs
+INV-8227,10470.91,2026-08-01,Nikhil Iyer,Flipkart Internet
+INV-8228,1029.62,2026-08-12,Aditya Malhotra,Amazon Seller Services
+INV-8229,3813.37,2026-08-14,Pooja Iyer,BigBasket
+INV-8230,2790.2,2026-08-20,Anita Iyer,PharmEasy
+INV-8231,3763.52,2026-08-19,Neha Bose,Nykaa E-Retail
+INV-8232,9640.63,2026-08-15,Divya Menon,Swiggy
+INV-8233,7085.21,2026-08-10,Ravi Malhotra,Myntra Designs
+INV-8234,6737.04,2026-08-12,Anita Verma,Uber India
+INV-8235,14437.99,2026-08-23,Meera Bose,PharmEasy
+INV-8236,14990.73,2026-08-16,Meera Reddy,Ola Cabs
+INV-8237,5511.95,2026-08-10,Suresh Chatterjee,Zomato
+INV-8238,9941.46,2026-08-09,Ravi Singh,Myntra Designs
+INV-8239,10349.52,2026-08-24,Aman Singh,Amazon Seller Services
+INV-8240,13581.4,2026-08-10,Ishita Singh,PharmEasy
+INV-8241,9621.58,2026-08-20,Kavya Reddy,PharmEasy
+INV-8242,9765.49,2026-08-10,Sneha Bose,Swiggy
+INV-8243,5599.31,2026-08-05,Priya Chatterjee,Ola Cabs
+INV-8244,6348.86,2026-08-07,Aditya Rao,Myntra Designs
+INV-8245,7626.06,2026-08-09,Kavya Joshi,Uber India
+INV-8246,4567.39,2026-08-11,Ishita Malhotra,Myntra Designs
+INV-8247,2282.34,2026-08-08,Nikhil Verma,Flipkart Internet
+INV-8248,1535.57,2026-08-13,Riya Gupta,Nykaa E-Retail
+INV-8249,6930.29,2026-08-22,Riya Verma,Myntra Designs
+INV-8250,12371.6,2026-08-12,Aman Kapoor,Myntra Designs
+INV-8251,569.39,2026-08-18,Divya Menon,Flipkart Internet
+INV-8252,1134.68,2026-08-15,Divya Bose,PharmEasy
+INV-8253,870.18,2026-08-02,Sneha Iyer,Nykaa E-Retail
+INV-8254,3674.28,2026-08-18,Sneha Verma,Ola Cabs
+INV-8255,5690.34,2026-08-24,Suresh Menon,Swiggy
+INV-8256,11185.32,2026-08-05,Pooja Chatterjee,Uber India
+INV-8257,6239.52,2026-08-09,Ishita Chatterjee,Flipkart Internet
+INV-8258,6780.94,2026-08-08,Karan Menon,BigBasket
+INV-8259,5635.92,2026-08-21,Sneha Bose,BigBasket
+INV-8260,3008.36,2026-08-04,Suresh Nair,Amazon Seller Services
+INV-8261,9664.13,2026-08-01,Karan Bose,Flipkart Internet
+INV-8262,11847.06,2026-08-07,Divya Iyer,BigBasket
+INV-8263,8878.06,2026-08-08,Riya Reddy,Flipkart Internet
+INV-8264,4302.94,2026-08-05,Neha Sharma,Swiggy
+INV-8265,2781.73,2026-08-22,Rohan Malhotra,Uber India
+INV-8266,11891.56,2026-08-08,Ravi Gupta,Swiggy
+INV-8267,2778.02,2026-08-02,Aditya Sharma,PharmEasy
+INV-8268,11235.59,2026-08-16,Manoj Verma,Nykaa E-Retail
+INV-8269,1813.11,2026-08-17,Manoj Chatterjee,BigBasket
+INV-8270,11791.54,2026-08-22,Priya Rao,PharmEasy
+INV-8271,9721.09,2026-08-01,Meera Menon,Uber India
+INV-8272,10353.93,2026-08-16,Suresh Kapoor,Ola Cabs
+INV-8273,9202.41,2026-08-03,Arjun Gupta,Flipkart Internet
+INV-8274,10739.57,2026-08-13,Aman Joshi,PharmEasy
+INV-8275,6914.44,2026-08-20,Manoj Nair,PharmEasy
+INV-8276,9889.41,2026-08-25,Sneha Singh,Flipkart Internet
+INV-8277,6323.85,2026-08-15,Nikhil Reddy,Nykaa E-Retail
+INV-8278,4824.66,2026-08-09,Aditya Kapoor,Flipkart Internet
+INV-8279,13860.1,2026-08-03,Vikram Bose,BigBasket
+INV-8280,1628.25,2026-08-24,Arjun Kapoor,Flipkart Internet
+INV-8281,8879.27,2026-08-18,Riya Sharma,Swiggy
+INV-8282,13129.26,2026-08-25,Pooja Gupta,Flipkart Internet
+INV-8283,9085.67,2026-08-12,Priya Nair,Nykaa E-Retail
+INV-8284,2489.16,2026-08-16,Manoj Reddy,PharmEasy
+INV-8285,8432.29,2026-08-04,Kavya Singh,Flipkart Internet
+INV-8286,6550.29,2026-08-18,Divya Malhotra,PharmEasy
+INV-8287,9711.59,2026-08-01,Neha Bose,PharmEasy
+INV-8288,4243.68,2026-08-25,Ravi Iyer,Myntra Designs
+INV-8289,2883.98,2026-08-05,Kavya Sharma,BigBasket
+INV-8290,11166.08,2026-08-01,Arjun Iyer,Nykaa E-Retail
+INV-8291,5767.05,2026-08-15,Manoj Reddy,Flipkart Internet
+INV-8292,10879.34,2026-08-25,Kavya Nair,Swiggy
+INV-8293,11365.41,2026-08-02,Vikram Iyer,Amazon Seller Services
+INV-8294,6474.84,2026-08-20,Nikhil Bose,Myntra Designs
+INV-8295,3389.64,2026-08-17,Pooja Nair,Ola Cabs
+INV-8298,312.78,2026-08-10,Neha Sharma,Nykaa E-Retail
+INV-8299,3980.94,2026-08-11,Vikram Malhotra,Zomato
+INV-8302,12953.97,2026-08-02,Arjun Kapoor,BigBasket
+INV-8303,13833.13,2026-08-11,Ravi Menon,Nykaa E-Retail
+INV-8306,10405.92,2026-08-12,Nikhil Singh,PharmEasy
+INV-8307,1765.88,2026-08-14,Pooja Singh,Flipkart Internet
+INV-8310,7746.8,2026-08-25,Sneha Joshi,Uber India
+INV-8311,14381.66,2026-08-21,Kavya Rao,BigBasket
+INV-8314,11365.55,2026-08-25,Ishita Menon,Swiggy
+INV-8315,13877.41,2026-08-19,Nikhil Bose,PharmEasy
+INV-8318,1030.4,2026-08-17,Rohan Chatterjee,Myntra Designs
+INV-8319,6887.78,2026-08-02,Meera Menon,Flipkart Internet
+INV-8322,13653.85,2026-08-19,Priya Menon,Uber India
+INV-8323,7238.79,2026-08-05,Aditya Chatterjee,Zomato
+INV-8326,7936.19,2026-08-06,Nikhil Joshi,Ola Cabs
+INV-8327,5933.15,2026-08-25,Kavya Nair,BigBasket
+INV-8330,12803.03,2026-08-20,Rohan Rao,Myntra Designs
+INV-8331,8824.13,2026-08-05,Aditya Verma,Swiggy
+INV-8333,9723.34,2026-08-11,Riya Kapoor,Myntra Designs
+INV-8334,10122.42,2026-08-17,Arjun Bose,Uber India
+INV-8335,2867.07,2026-08-07,Kavya Nair,Amazon Seller Services
+INV-8336,14999.65,2026-08-05,Karan Reddy,Ola Cabs
+INV-8337,11608.72,2026-08-24,Sneha Joshi,Myntra Designs
+INV-8338,9346.48,2026-08-20,Aditya Malhotra,Amazon Seller Services
+INV-8339,12503.74,2026-08-25,Anita Iyer,Swiggy
+INV-8340,6280.12,2026-08-22,Nikhil Sharma,Swiggy
+INV-8341,4416.22,2026-08-24,Nikhil Chatterjee,Zomato
+INV-8342,4779.43,2026-08-26,Riya Reddy,Zomato
+INV-8343,14217.47,2026-08-15,Kavya Bose,Zomato
+INV-8344,8005.93,2026-08-06,Suresh Joshi,Myntra Designs
+INV-8345,3899.3,2026-08-21,Vikram Singh,PharmEasy
+INV-8346,10728.45,2026-08-17,Riya Verma,BigBasket
+INV-8347,2571.78,2026-08-15,Arjun Malhotra,Myntra Designs
+INV-8348,14206.86,2026-08-08,Pooja Verma,Swiggy
+INV-8349,987.26,2026-08-17,Ravi Kapoor,BigBasket
+INV-8350,5748.08,2026-08-01,Suresh Verma,Zomato
+INV-8351,2360.68,2026-08-02,Aditya Malhotra,Flipkart Internet
+INV-8352,10641.64,2026-08-15,Vikram Malhotra,Ola Cabs
+INV-8353,3986.93,2026-08-05,Arjun Sharma,Amazon Seller Services
+INV-8354,1844.68,2026-08-10,Manoj Kapoor,PharmEasy
+INV-8355,3728.14,2026-08-21,Sneha Sharma,Myntra Designs
+INV-8356,12582.81,2026-08-16,Arjun Verma,Ola Cabs
+INV-8357,7827.08,2026-08-08,Ravi Bose,Uber India
+INV-8358,222.15,2026-08-12,Meera Kapoor,Swiggy
+INV-8359,10032.36,2026-08-03,Pooja Iyer,PharmEasy

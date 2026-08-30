@@ -44,6 +44,11 @@ automatable, and honestly flags the rest instead of guessing.
 
 ## Architecture
 
+![Pipeline overview](architecture/pipeline_overview.svg)
+![AI resolution path](architecture/ai_resolution_path.svg)
+
+Text version, for anyone viewing this outside GitHub's SVG renderer:
+
 ```
                 ┌─────────────────┐
                 │  3 CSV sources   │

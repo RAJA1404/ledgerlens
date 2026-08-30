@@ -105,12 +105,15 @@ def load_ledger(path: str) -> list[LedgerEntry]:
 
 
 if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--data-dir", type=str, default="data")
+    args = parser.parse_args()
+
     # Quick sanity check when run directly
-    # NOTE: run this script from the ledgerlens/ root folder, e.g.:
-    #   py src/normalize.py
-    payments = load_payments("data/payments.csv")
-    settlements = load_settlements("data/settlements.csv")
-    ledger = load_ledger("data/ledger.csv")
+    payments = load_payments(f"{args.data_dir}/payments.csv")
+    settlements = load_settlements(f"{args.data_dir}/settlements.csv")
+    ledger = load_ledger(f"{args.data_dir}/ledger.csv")
 
     print(f"Loaded {len(payments)} payments, {len(settlements)} settlements, "
           f"{len(ledger)} ledger entries")

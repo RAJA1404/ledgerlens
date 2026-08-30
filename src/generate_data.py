@@ -1,12 +1,13 @@
 
+
 import csv
+import os
 import random
 from datetime import date, timedelta
 
 random.seed(42)
 
-OUTPUT_DIR = "data"
-
+OUTPUT_DIR = "/home/claude/ledgerlens/data"
 
 FIRST_NAMES = ["Ravi", "Priya", "Arjun", "Sneha", "Vikram", "Anita", "Karan",
                "Divya", "Rohan", "Meera", "Aditya", "Kavya", "Suresh", "Pooja",
@@ -18,7 +19,7 @@ VENDOR_CANONICAL = ["Amazon Seller Services", "Flipkart Internet", "Swiggy",
                     "Zomato", "Myntra Designs", "BigBasket", "Nykaa E-Retail",
                     "Ola Cabs", "Uber India", "PharmEasy"]
 
-
+# Realistic alias variants for the same vendor — used in ledger/settlement rows
 VENDOR_ALIASES = {
     "Amazon Seller Services": ["AMZN Mktp IN*AB{}", "AMAZON INDIA", "AMZN*{}"],
     "Flipkart Internet": ["FLIPKART*{}", "FKRT INTERNET PVT LTD", "Flipkart-{}"],
@@ -47,11 +48,19 @@ def money(amount):
     return round(amount, 2)
 
 
-def generate():
-    n_clean = 78         
-    n_noisy = 20           
-    n_exception = 13       
-    n_duplicate = 9        
+def generate(scale: float = 1.0, output_dir: str = None):
+    """
+    scale: multiplier applied to the base record counts (1.0 = original 120,
+           3.0 = ~360 records) while keeping the same case-type proportions.
+    output_dir: where to write the CSVs. Defaults to OUTPUT_DIR (data/).
+    """
+    out_dir = output_dir or OUTPUT_DIR
+    os.makedirs(out_dir, exist_ok=True)
+
+    n_clean = round(78 * scale)       # exact, clean matches across all 3 sources
+    n_noisy = round(20 * scale)       # resolvable but with realistic corruption
+    n_exception = round(13 * scale)   # genuine exceptions (missing / real mismatch)
+    n_duplicate = round(9 * scale)    # duplicate or ambiguous candidate cases
     total = n_clean + n_noisy + n_exception + n_duplicate
 
     payments = []
@@ -185,27 +194,27 @@ def generate():
         ground_truth.append([pay_id, stl_id_a, inv_id, "MATCH", "ambiguous_duplicate_candidate"])
 
     # ---------- write files ----------
-    with open(f"{OUTPUT_DIR}/payments.csv", "w", newline="") as f:
+    with open(f"{out_dir}/payments.csv", "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["payment_id", "amount", "date", "customer_ref", "vendor"])
         w.writerows(payments)
 
-    with open(f"{OUTPUT_DIR}/settlements.csv", "w", newline="") as f:
+    with open(f"{out_dir}/settlements.csv", "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["settlement_id", "amount", "date", "reference"])
         w.writerows(settlements)
 
-    with open(f"{OUTPUT_DIR}/ledger.csv", "w", newline="") as f:
+    with open(f"{out_dir}/ledger.csv", "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["invoice", "amount", "date", "customer", "vendor"])
         w.writerows(ledger)
 
-    with open(f"{OUTPUT_DIR}/ground_truth.csv", "w", newline="") as f:
+    with open(f"{out_dir}/ground_truth.csv", "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["payment_id", "settlement_id", "invoice_id", "label", "case_type"])
         w.writerows(ground_truth)
 
-    with open(f"{OUTPUT_DIR}/vendor_aliases.csv", "w", newline="") as f:
+    with open(f"{out_dir}/vendor_aliases.csv", "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["canonical_vendor", "alias_pattern"])
         for vendor, aliases in VENDOR_ALIASES.items():
@@ -213,7 +222,7 @@ def generate():
                 w.writerow([vendor, alias])
 
     print(f"Generated {len(payments)} payments, {len(settlements)} settlements, "
-          f"{len(ledger)} ledger entries")
+          f"{len(ledger)} ledger entries -> {out_dir}/")
     print(f"Ground truth: {len(ground_truth)} labeled cases "
           f"({n_clean} clean, {n_noisy} noisy, {n_exception} exceptions, "
           f"{n_duplicate} ambiguous)")
@@ -221,4 +230,11 @@ def generate():
 
 
 if __name__ == "__main__":
-    generate()
+    import argparse
+    parser = argparse.ArgumentParser(description="Generate LedgerLens synthetic data")
+    parser.add_argument("--scale", type=float, default=1.0,
+                         help="Multiplier on base record counts (e.g. 3.0 for ~360 records)")
+    parser.add_argument("--output-dir", type=str, default=None,
+                         help="Where to write CSVs (default: data/)")
+    args = parser.parse_args()
+    generate(scale=args.scale, output_dir=args.output_dir)

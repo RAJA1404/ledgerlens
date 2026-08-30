@@ -131,11 +131,14 @@ def summarize(results: list[MatchResult]):
 
 
 if __name__ == "__main__":
-    # NOTE: run this script from the ledgerlens/ root folder, e.g.:
-    #   py src/deterministic_match.py
-    payments = load_payments("data/payments.csv")
-    settlements = load_settlements("data/settlements.csv")
-    ledger = load_ledger("data/ledger.csv")
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--data-dir", type=str, default="data")
+    args = parser.parse_args()
+
+    payments = load_payments(f"{args.data_dir}/payments.csv")
+    settlements = load_settlements(f"{args.data_dir}/settlements.csv")
+    ledger = load_ledger(f"{args.data_dir}/ledger.csv")
 
     results = run_deterministic_matching(payments, settlements, ledger)
     summarize(results)
