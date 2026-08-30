@@ -1,4 +1,5 @@
 
+
 import csv
 
 from normalize import load_payments, load_settlements, load_ledger
@@ -153,13 +154,19 @@ def evaluate(final_verdicts: dict, ground_truth: dict):
 
 
 if __name__ == "__main__":
-    payments = load_payments("data/payments.csv")
-    settlements = load_settlements("data/settlements.csv")
-    ledger = load_ledger("data/ledger.csv")
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--data-dir", type=str, default="data")
+    args = parser.parse_args()
+    d = args.data_dir
+
+    payments = load_payments(f"{d}/payments.csv")
+    settlements = load_settlements(f"{d}/settlements.csv")
+    ledger = load_ledger(f"{d}/ledger.csv")
 
     det_results = run_deterministic_matching(payments, settlements, ledger)
-    ai_results = load_ai_results("data/ai_resolver_results.csv")
-    ground_truth = load_ground_truth("data/ground_truth.csv")
+    ai_results = load_ai_results(f"{d}/ai_resolver_results.csv")
+    ground_truth = load_ground_truth(f"{d}/ground_truth.csv")
 
     final_verdicts = build_final_verdicts(det_results, ai_results)
     evaluate(final_verdicts, ground_truth)

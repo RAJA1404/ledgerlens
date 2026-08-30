@@ -1,0 +1,31 @@
+canonical_vendor,alias_pattern
+Amazon Seller Services,AMZN Mktp IN*AB{}
+Amazon Seller Services,AMAZON INDIA
+Amazon Seller Services,AMZN*{}
+Flipkart Internet,FLIPKART*{}
+Flipkart Internet,FKRT INTERNET PVT LTD
+Flipkart Internet,Flipkart-{}
+Swiggy,SWIGGY*ORDER{}
+Swiggy,BUNDL TECH SWIGGY
+Swiggy,Swiggy Ord {}
+Zomato,ZOMATO ONLINE
+Zomato,ZOMATO*{}
+Zomato,Zomato Ltd
+Myntra Designs,MYNTRA*{}
+Myntra Designs,MYNTRA DESIGNS PVT
+Myntra Designs,Myntra-{}
+BigBasket,BIGBASKET*{}
+BigBasket,SUPERMARKET GROCERY BB
+BigBasket,BigBasket Ord{}
+Nykaa E-Retail,NYKAA*{}
+Nykaa E-Retail,FSN E-COMMERCE NYKAA
+Nykaa E-Retail,Nykaa-{}
+Ola Cabs,OLA*TRIP{}
+Ola Cabs,ANI TECHNOLOGIES OLA
+Ola Cabs,Ola Cabs {}
+Uber India,UBER *TRIP{}
+Uber India,UBER INDIA SYSTEMS
+Uber India,Uber-{}
+PharmEasy,PHARMEASY*{}
+PharmEasy,API HOLDINGS PHARMEASY
+PharmEasy,PharmEasy Ord{}
