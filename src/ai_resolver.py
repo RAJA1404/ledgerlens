@@ -1,22 +1,4 @@
-"""
-LedgerLens — Step 3b: AI Resolver
 
-For payments the deterministic layer couldn't confidently resolve, we now
-have a short list of *fuzzy candidates* (from fuzzy_candidates.py). This
-module sends each payment + its candidates to an LLM and asks it to reason
-about which one (if any) is the true match — returning a structured verdict,
-confidence score, and explanation. Never a bare yes/no.
-
-CRITICAL DESIGN RULE (the "hard validation" layer):
-The AI's verdict is never trusted blindly. After the AI responds, we apply a
-hard business rule: if the amount difference exceeds a safety threshold, we
-OVERRIDE the AI's verdict to EXCEPTION, no matter how confident it claims to
-be. This is what makes the system defensible — the AI can suggest, but it
-cannot violate a deterministic financial safety rule.
-
-Requires: GEMINI_API_KEY environment variable to be set.
-Get a free key (no credit card needed) at https://aistudio.google.com
-"""
 
 import json
 import os
