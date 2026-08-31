@@ -46,159 +46,6 @@ Return ONLY valid JSON in exactly this structure, nothing else:
 }
 """
 
-BATCH_SYSTEM_PROMPT = """You are a financial reconciliation investigator. You \
-are given a LIST of payment records, each with a short list of candidate \
-settlement records that MIGHT correspond to it. Investigate EACH payment \
-independently and report your confidence honestly for each one.
-
-Rules (apply to every payment in the list separately):
-- If evidence strongly supports one candidate being the true match, say so \
-with high confidence.
-- If evidence is ambiguous, or no candidate is convincing, say \
-"needs_human_review" for that payment — do NOT force a verdict to seem decisive.
-- Base your reasoning only on the data provided for that specific payment. Do \
-not let one payment's evidence influence another's verdict.
-- Always explain what is missing or inconsistent if you cannot confidently \
-resolve a given payment.
-
-Return ONLY a valid JSON object with a "results" array, one object per \
-payment, in the SAME ORDER as the input, nothing else:
-{
-  "results": [
-    {
-      "payment_id": "string (must match the input payment_id)",
-      "verdict": "match" | "needs_human_review" | "no_match",
-      "matched_settlement_id": "string or null",
-      "confidence": 0.0-1.0,
-      "reasoning": "1-2 sentence explanation",
-      "evidence": ["specific point 1", "specific point 2"]
-    }
-  ]
-}
-"""
-
-
-def _call_llm_with_retry(system_prompt: str, user_prompt: str, expect_array: bool = False):
-    """Shared retry/backoff logic used by both single and batch calls.
-    Returns (response_text, error) — response_text is None on total failure.
-    expect_array=True for batch calls (Groq's json_object mode requires a
-    top-level object, so batch prompts wrap the array in {"results": [...]})."""
-    last_error = None
-    for attempt in range(1, MAX_RETRIES + 1):
-        try:
-            response = client.chat.completions.create(
-                model=MODEL_NAME,
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": user_prompt},
-                ],
-                response_format={"type": "json_object"},
-                temperature=0,
-            )
-            return response.choices[0].message.content, None
-        except RateLimitError as e:
-            last_error = e
-            if attempt < MAX_RETRIES:
-                delay = 20
-                print(f"  (rate limit hit, retrying in {delay}s — attempt {attempt}/{MAX_RETRIES})")
-                time.sleep(delay)
-            else:
-                print(f"  (gave up after {MAX_RETRIES} attempts)")
-        except (APIError, APIStatusError) as e:
-            last_error = e
-            if attempt < MAX_RETRIES:
-                delay = 5 * (2 ** (attempt - 1))
-                print(f"  (server busy, retrying in {delay}s — attempt {attempt}/{MAX_RETRIES})")
-                time.sleep(delay)
-            else:
-                print(f"  (gave up after {MAX_RETRIES} attempts)")
-    return None, last_error
-
-
-def resolve_batch_with_ai(payments_with_candidates: list[tuple[Payment, list[dict]]]) -> dict:
-    """
-    OPTIMIZATION: resolves MULTIPLE payments in a single API call instead of
-    one call per payment. This is the key latency/cost fix — for 19 unresolved
-    payments, this turns ~19 sequential API calls into ~4 batched calls
-    (batch size 5), which is both faster and cheaper without changing the
-    reasoning quality per record (each payment is still investigated
-    independently — see BATCH_SYSTEM_PROMPT above).
-
-    Returns {payment_id: verdict_dict}
-    """
-    # Separate out payments with zero candidates — no need to spend an API
-    # call on something we already know the answer to.
-    results = {}
-    to_send = []
-    for payment, candidates in payments_with_candidates:
-        if not candidates:
-            results[payment.payment_id] = {
-                "verdict": "no_match",
-                "matched_settlement_id": None,
-                "confidence": 1.0,
-                "reasoning": "No plausible settlement candidates found within tolerance.",
-                "evidence": ["zero_fuzzy_candidates"],
-            }
-        else:
-            to_send.append((payment, candidates))
-
-    if not to_send:
-        return results
-
-    batch_input = [
-        {
-            "payment_id": payment.payment_id,
-            "amount": payment.amount,
-            "date": payment.txn_date.isoformat(),
-            "reference": payment.ref_raw,
-            "vendor": payment.vendor,
-            "candidates": candidates,
-        }
-        for payment, candidates in to_send
-    ]
-
-    user_prompt = f"Payments to investigate:\n{json.dumps(batch_input, indent=2)}\n\nReturn the JSON object now."
-
-    response_text, error = _call_llm_with_retry(BATCH_SYSTEM_PROMPT, user_prompt)
-
-    if response_text is None:
-        # Whole batch failed after retries — route every payment in it to
-        # human review individually rather than losing the batch silently.
-        for payment, _ in to_send:
-            results[payment.payment_id] = {
-                "verdict": "needs_human_review",
-                "matched_settlement_id": None,
-                "confidence": 0.0,
-                "reasoning": f"AI service unavailable after {MAX_RETRIES} retries "
-                             f"({error}); routed to manual review.",
-                "evidence": ["ai_service_unavailable"],
-            }
-        return results
-
-    try:
-        parsed = json.loads(response_text)
-        items = parsed["results"] if isinstance(parsed, dict) else parsed
-        for item in items:
-            results[item["payment_id"]] = {
-                "verdict": item["verdict"],
-                "matched_settlement_id": item.get("matched_settlement_id"),
-                "confidence": item.get("confidence", 0.0),
-                "reasoning": item.get("reasoning", ""),
-                "evidence": item.get("evidence", []),
-            }
-    except (json.JSONDecodeError, KeyError, TypeError):
-        # Parsing the batch failed — fall back to human review for this batch
-        for payment, _ in to_send:
-            results[payment.payment_id] = {
-                "verdict": "needs_human_review",
-                "matched_settlement_id": None,
-                "confidence": 0.0,
-                "reasoning": "Batch AI response could not be parsed — routed to manual review.",
-                "evidence": ["batch_parse_error"],
-            }
-
-    return results
-
 
 def resolve_with_ai(payment: Payment, candidates: list[dict]) -> dict:
     """Send one payment + its candidates to the LLM and return its structured verdict."""
@@ -286,23 +133,9 @@ if __name__ == "__main__":
     from normalize import load_payments, load_settlements, load_ledger
     from deterministic_match import run_deterministic_matching
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--data-dir", type=str, default="data")
-    parser.add_argument("--batch-size", type=int, default=3,
-                         help="Payments per API call. Lower = safer on token/rate "
-                              "limits, more calls. 3 is a safe default for free tier.")
-    parser.add_argument("--pause-seconds", type=int, default=15,
-                         help="Seconds to wait between batches, to stay under "
-                              "per-minute rate limits. Increase if you still hit "
-                              "429 errors. Default 15s.")
-    args = parser.parse_args()
-    d = args.data_dir
-    BATCH_SIZE = args.batch_size
-    PAUSE_SECONDS = args.pause_seconds
-
-    payments = load_payments(f"{d}/payments.csv")
-    settlements = load_settlements(f"{d}/settlements.csv")
-    ledger = load_ledger(f"{d}/ledger.csv")
+    payments = load_payments("data/payments.csv")
+    settlements = load_settlements("data/settlements.csv")
+    ledger = load_ledger("data/ledger.csv")
 
     det_results = run_deterministic_matching(payments, settlements, ledger)
     matched_settlement_ids = {r.settlement_id for r in det_results if r.settlement_id}
@@ -382,9 +215,7 @@ if __name__ == "__main__":
             writer.writeheader()
             writer.writerows(ai_output_rows)
 
-        if batch_num < len(batches):
-            print(f"  (pausing {PAUSE_SECONDS}s before next batch — rate limit safety margin)")
-            time.sleep(PAUSE_SECONDS)
+        time.sleep(2)  # small pause between calls to stay under per-minute rate limits
 
     matches = sum(1 for row in ai_output_rows if row["verdict"] == "match")
     review = sum(1 for row in ai_output_rows if row["verdict"] == "needs_human_review")

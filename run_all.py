@@ -34,13 +34,9 @@ def main():
                          help="Data size multiplier when regenerating (e.g. 3.0 for ~360 records)")
     parser.add_argument("--data-dir", type=str, default="data",
                          help="Data directory to use/generate (e.g. data_scale_test for a scale run)")
-    parser.add_argument("--batch-size", type=int, default=3,
-                         help="Payments per AI resolver API call (default 3, "
-                              "safe for free-tier rate limits). Higher = fewer "
-                              "calls but bigger prompts.")
-    parser.add_argument("--pause-seconds", type=int, default=15,
-                         help="Seconds between AI resolver batches (default 15). "
-                              "Increase if you hit 429 rate-limit errors.")
+    parser.add_argument("--batch-size", type=int, default=5,
+                         help="Payments per AI resolver API call (default 5). "
+                              "Higher = faster, fewer calls, larger prompts.")
     args = parser.parse_args()
     dd = ["--data-dir", args.data_dir]
 
@@ -53,8 +49,7 @@ def main():
 
     if not args.skip_ai:
         run_step("ai_resolver.py", "STEP 4: AI resolver (calls Gemini API)",
-                  extra_args=dd + ["--batch-size", str(args.batch_size),
-                                    "--pause-seconds", str(args.pause_seconds)])
+                  extra_args=dd + ["--batch-size", str(args.batch_size)])
     else:
         print("\nSkipping AI resolver (--skip-ai) — evaluation will run on "
               "deterministic-only results, or reuse any previously cached "
