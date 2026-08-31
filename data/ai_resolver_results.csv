@@ -1,20 +1,20 @@
 payment_id,verdict,matched_settlement_id,confidence,reasoning,hard_rule_override
-pay_1079,match,stl_5079,0.95,"Candidate stl_5079 has an exact amount and date match with the payment record. Furthermore, the settlement's raw reference 'OLA*TRIP80' aligns directly with the vendor name 'Ola Cabs'.",False
-pay_1081,match,stl_5081,0.98,"The settlement record stl_5081 provides an exact match for both the payment amount and date. The reference number is also highly similar, differing by only one character ('X' vs '2').",False
-pay_1083,match,stl_5083,0.9,"The payment and settlement records have exact matches for both amount and date. Although the full reference strings differ, the settlement reference includes the vendor name, which aligns with the payment's vendor.",False
-pay_1085,match,stl_5085,0.9,"The payment and settlement records have exact matches for both amount and date. The reference numbers are highly similar, with only a single character difference.",False
-pay_1087,match,stl_5087,0.95,"The payment and settlement records have exact matches for amount and date, and the settlement reference clearly indicates the correct vendor despite a different internal reference number.",False
-pay_1091,match,stl_5091,0.9,"The payment and settlement records match perfectly on amount and date. The settlement reference 'UBER *TRIP92' strongly aligns with the payment's vendor 'Uber India', despite the low similarity score for the full reference strings.",False
-pay_1095,match,stl_5095,0.9,"Settlement `stl_5095` provides exact matches for both the payment amount and date. While the reference string similarity is low, the 'AMZN' in its reference strongly suggests a connection to the 'Amazon Seller Services' vendor.",False
-pay_1097,match,stl_5097,0.95,"The settlement record matches the payment's amount and date exactly, and the reference is highly similar, differing by only one character, suggesting a likely typo or minor variation.",False
+pay_1079,match,stl_5079,0.9,Exact amount and date match with moderate reference similarity; other candidate has significant amount and date differences.,False
+pay_1081,match,stl_5081,0.9,Only candidate with exact amount and date; high reference similarity; others have large amount differences.,False
+pay_1083,match,stl_5083,0.8,Only candidate available; amount and date match exactly; reference similarity low but no alternative.,False
+pay_1085,match,stl_5085,0.95,"Amount, date, and reference similarity all match closely.",False
+pay_1087,needs_human_review,,0.4,"Amount and date match, but reference similarity is low, making the match uncertain.",False
+pay_1091,needs_human_review,,0.4,"Amount and date match, but reference similarity is low, making the match uncertain.",False
+pay_1095,match,stl_5095,0.8,Exact amount and date match with settlement stl_5095; other candidates have significant amount differences despite higher reference similarity.,False
+pay_1097,match,stl_5097,0.95,"All key fields (amount, date, reference similarity) align perfectly with settlement stl_5097.",False
 pay_1098,no_match,,1.0,No plausible settlement candidates found within tolerance.,False
-pay_1099,needs_human_review,,0.2,"Settlement stl_5099 has perfect matches for date and reference, but the amount difference is too substantial to confidently declare a match without further investigation.",False
-pay_1100,needs_human_review,,0.4,"While settlement stl_5124 shares the same date and has the highest reference similarity, there is a significant amount difference and the reference is not an exact match, preventing a confident reconciliation.",False
-pay_1102,match,stl_5124,0.85,"Settlement stl_5124 has a very close amount and a reasonable date difference. While the reference is not an exact match, its similarity and the small financial discrepancy strongly suggest it is the corresponding settlement.",False
-pay_1103,needs_human_review,stl_5103,0.85,"Settlement record 'stl_5103' provides an exact match for both the payment date and the reference number, which are strong identifiers for reconciliation. Despite a significant difference in the amount, the perfect alignment on these two key fields strongly indicates it is the corresponding settlement. [OVERRIDDEN BY HARD RULE: amount difference of ₹1603.94 exceeds the ₹500.0 safety threshold — AI match suggestion rejected regardless of stated confidence.]",True
-pay_1104,needs_human_review,,0.3,"Both candidate settlements show significant discrepancies in both amount and reference number when compared to the payment record, making a confident match impossible.",False
+pay_1099,needs_human_review,,0.4,"Both candidates have large amount discrepancies; one has perfect reference but huge amount diff, the other has smaller amount diff but reference mismatch.",False
+pay_1100,match,stl_5124,0.7,"Candidate stl_5124 has the smallest amount difference, zero date difference, and high reference similarity, outperforming the other candidate.",False
+pay_1102,match,stl_5124,0.8,"Candidate stl_5124 shows a negligible amount difference and moderate reference similarity, while the other candidate has a much larger amount difference.",False
+pay_1103,needs_human_review,,0.4,"Exact reference and date match but amount differs by 1603.94, which is a large discrepancy.",False
+pay_1104,no_match,,0.9,Neither candidate matches the reference ORD-8105; both have large amount differences and date offsets.,False
 pay_1106,no_match,,1.0,No plausible settlement candidates found within tolerance.,False
-pay_1107,needs_human_review,,0.4,"Candidate stl_5107 has a perfect reference match and matching date, but the amount difference of $609.24 is significant and requires further investigation.",False
-pay_1108,needs_human_review,,0.3,"Both candidate settlements have significant amount discrepancies with the payment record, making a confident match impossible without further context on acceptable variances. While settlement stl_5118 has a strong reference similarity, the amount difference is too large to ignore.",False
-pay_1110,needs_human_review,,0.2,"All candidate settlements show significant discrepancies in both amount and reference number compared to the payment record, preventing a confident match. Further investigation is required to understand these differences.",False
-pay_1118,match,stl_5125,1.0,"Settlement stl_5125 perfectly matches the payment record on amount, date, and reference. All key reconciliation fields align exactly.",False
+pay_1107,needs_human_review,stl_5107,0.7,Reference matches exactly and date aligns; amount difference is moderate but reference similarity is perfect. [OVERRIDDEN BY HARD RULE: amount difference of ₹609.24 exceeds the ₹500.0 safety threshold — AI match suggestion rejected regardless of stated confidence.],True
+pay_1108,needs_human_review,,0.4,"Neither candidate has a perfect reference match; differences in amount and date are comparable, making the best match unclear.",False
+pay_1110,no_match,,0.2,"All candidates reference ORD-8119, none match ORD-8111; amount differences are large and no candidate stands out.",False
+pay_1118,match,stl_5125,0.99,"All key fields (amount, date, reference) match exactly with settlement stl_5125.",False

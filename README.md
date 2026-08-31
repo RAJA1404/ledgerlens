@@ -44,6 +44,11 @@ automatable, and honestly flags the rest instead of guessing.
 
 ## Architecture
 
+![Pipeline overview](architecture/pipeline_overview.svg)
+![AI resolution path](architecture/ai_resolution_path.svg)
+
+Text version, for anyone viewing this outside GitHub's SVG renderer:
+
 ```
                 ┌─────────────────┐
                 │  3 CSV sources   │
@@ -114,8 +119,9 @@ match at high confidence and the hard rule correctly rejected it.
 
 ## Run it yourself
 
-Requires Python 3.10+ and a free [Gemini API key](https://aistudio.google.com)
-(no credit card needed).
+Requires Python 3.10+ and a free [Groq API key](https://console.groq.com)
+(no credit card needed — Groq's free tier has far higher daily request limits
+than alternatives like Gemini's free tier, which is why it's used here).
 
 ```bash
 git clone https://github.com/RAJA1404/ledgerlens.git
@@ -123,8 +129,8 @@ cd ledgerlens
 pip install -r requirements.txt
 
 # set your API key (Windows)
-setx GEMINI_API_KEY "your-key-here"
-# (Mac/Linux: export GEMINI_API_KEY="your-key-here")
+setx GROQ_API_KEY "your-key-here"
+# (Mac/Linux: export GROQ_API_KEY="your-key-here")
 
 # run the full pipeline and see the benchmark
 py run_all.py
