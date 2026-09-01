@@ -14,15 +14,16 @@ Benchmarked against a known ground truth on 117 synthetic payment records:
 | Metric | Result |
 |---|---|
 | Records processed | 117 |
-| Auto-matched | 108 (92.3%) |
-| Exceptions (unresolved, sent for human review) | 9 (7.7%) |
-| **Precision** (of auto-matched, % actually correct) | **99.1%** |
-| **Recall** (of real matches, % successfully found) | **100.0%** |
+| Auto-matched | 107 (91.5%) |
+| Exceptions (unresolved, sent for human review) | 10 (8.5%) |
+| **Precision** (of auto-matched, % actually correct) | **98.1%** |
+| **Recall** (of real matches, % successfully found) | **98.1%** |
 
-**We do not claim 100% accuracy.** One record (`pay_1102`) was matched to the
-wrong settlement — see [Known Limitations](#known-limitations) for exactly
-why, and how we'd fix it. A system that claims perfect accuracy on messy
-financial data is a red flag, not an achievement.
+**We do not claim 100% accuracy.** Two records (`pay_1100`, `pay_1102`) were
+both matched to the same wrong settlement (`stl_5124`) — see
+[Known Limitations](#known-limitations) for exactly why, and how we'd fix it.
+A system that claims perfect accuracy on messy financial data is a red flag,
+not an achievement.
 
 ---
 
@@ -112,8 +113,9 @@ but a prompt instruction is a suggestion, not a guarantee. The hard
 validation layer is plain Python that re-checks every AI-proposed match
 against that rule and **overrides** the AI's verdict if it's violated,
 regardless of how confident the AI claims to be. This actually fired during
-testing — see `pay_1103` in the resolver output, where the AI proposed a
-match at high confidence and the hard rule correctly rejected it.
+testing — twice, independently, with two different LLM providers: `pay_1103`
+(Gemini) and `pay_1107` (Groq), both proposed as high-confidence matches that
+the hard rule correctly rejected for exceeding the ₹500 safety threshold.
 
 ---
 
@@ -182,12 +184,14 @@ ledgerlens/
 Being transparent about this is deliberate — see the note at the top of
 this README about why 100% accuracy would be a red flag, not a strength.
 
-**`pay_1102` — one false match.** The AI resolver matched this payment to
-settlement `stl_5124`, but ground truth shows this payment's true settlement
-was actually missing (a genuine `missing_settlement` exception). The fuzzy
-candidate generator surfaced `stl_5124` as a plausible decoy because it was
-amount/date-adjacent, and the AI resolver's confidence in the vendor-name
-signal wasn't checked against ledger vendor data before finalizing.
+**`stl_5124` — one settlement record, wrongly claimed by two different
+payments (`pay_1100` and `pay_1102`).** Ground truth shows neither payment's
+true settlement matched this record, but the fuzzy candidate generator
+surfaced `stl_5124` as a plausible decoy for both because it was
+amount/date-adjacent to each. This is a **repeated pattern, not a one-off** —
+it showed up identically when we independently tested with two different LLM
+providers (Gemini and Groq), which tells us the root cause is in the
+candidate generation logic itself, not a quirk of one model's reasoning.
 
 **Fix in a production system:** the fuzzy candidate generator should be
 vendor-aware — cross-checking candidates against the ledger's recorded
@@ -195,6 +199,12 @@ vendor for that payment, not just amount and date proximity. This would
 eliminate this specific class of error. We chose not to over-fit this fix
 into the current version to keep the evaluation honest and unmodified after
 seeing this result.
+
+**Two missed matches (`pay_1087`, `pay_1091`).** Both are reference-reformatting
+cases where the AI resolver was appropriately cautious (0.4 confidence) rather
+than forcing a match — the system erred toward `needs_human_review` instead
+of a risky auto-match, consistent with the project's precision-over-recall
+design goal.
 
 **Other scope limitations (by design, for a buildathon timeframe):**
 - No OCR/PDF parsing — structured CSV/JSON input only
@@ -214,4 +224,4 @@ seeing this result.
 | Code quality | Modular pipeline, each stage independently testable and readable |
 | System architecture | Deterministic-first, AI-assisted, hard-validated — a real layered design, not a single LLM call |
 | Product thinking | Honest exception queue over false confidence; documented limitations |
-| Defensible engineering decisions | Every architectural choice above has a concrete reason, provable in the actual output (see `pay_1103` override) |
+| Defensible engineering decisions | Every architectural choice above has a concrete reason, provable in the actual output (see `pay_1103`/`pay_1107` hard-rule overrides, reproduced independently across two LLM providers) |
