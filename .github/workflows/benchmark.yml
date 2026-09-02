@@ -96,6 +96,7 @@ jobs:
           python << 'EOF'
           import csv
           import json
+          import os
           from pathlib import Path
           
           results = {}
@@ -106,28 +107,41 @@ jobs:
               ("data_medium", "medium_3.0x"),
               ("data_large", "large_10.0x")
           ]:
-              if Path(f"{scale_dir}/ai_resolver_results.csv").exists():
-                  with open(f"{scale_dir}/ai_resolver_results.csv") as f:
-                      reader = csv.DictReader(f)
-                      rows = list(reader)
-                      matched = sum(1 for r in rows if r.get('final_status') == 'MATCHED')
-                      results[scale_name] = {
-                          "records": len(rows),
-                          "matched": matched,
-                          "match_rate": 100 * matched / len(rows) if rows else 0
-                      }
+              csv_path = Path(f"{scale_dir}/ai_resolver_results.csv")
+              if csv_path.exists():
+                  try:
+                      with open(csv_path) as f:
+                          reader = csv.DictReader(f)
+                          rows = list(reader)
+                          if rows:
+                              matched = sum(1 for r in rows if r.get('final_status') == 'MATCHED')
+                              results[scale_name] = {
+                                  "records": len(rows),
+                                  "matched": matched,
+                                  "match_rate": 100 * matched / len(rows)
+                              }
+                  except Exception as e:
+                      print(f"⚠️  Error reading {csv_path}: {e}")
+              else:
+                  print(f"⏭️  Skipping {scale_name} - results not found at {csv_path}")
           
-          # Save benchmark results
-          with open("benchmark_results/metrics.json", "w") as f:
-              json.dump(results, f, indent=2)
-          
-          # Print summary
-          print("=== BENCHMARK RESULTS ===")
-          for test, data in results.items():
-              print(f"\n{test}:")
-              print(f"  Records: {data['records']}")
-              print(f"  Matched: {data['matched']}")
-              print(f"  Match Rate: {data['match_rate']:.1f}%")
+          # Save benchmark results if we have any
+          if results:
+              with open("benchmark_results/metrics.json", "w") as f:
+                  json.dump(results, f, indent=2)
+              
+              # Print summary
+              print("=== BENCHMARK RESULTS ===")
+              for test, data in results.items():
+                  print(f"\n{test}:")
+                  print(f"  Records: {data['records']}")
+                  print(f"  Matched: {data['matched']}")
+                  print(f"  Match Rate: {data['match_rate']:.1f}%")
+          else:
+              print("⚠️  No benchmark results found - first run or tests failed")
+              # Create empty file so upload doesn't fail
+              with open("benchmark_results/metrics.json", "w") as f:
+                  json.dump({}, f)
           EOF
       
       - name: 📈 Generate benchmark report
@@ -231,11 +245,15 @@ jobs:
           history_dir = Path('.github/benchmark_history')
           data_points = []
           
-          for file in sorted(history_dir.glob('*.json')):
-              with open(file) as f:
-                  data = json.load(f)
-                  data['date'] = file.stem
-                  data_points.append(data)
+          if history_dir.exists():
+              for file in sorted(history_dir.glob('*.json')):
+                  try:
+                      with open(file) as f:
+                          data = json.load(f)
+                          data['date'] = file.stem
+                          data_points.append(data)
+                  except Exception as e:
+                      print(f"⚠️  Error reading {file}: {e}")
           
           # Generate markdown chart
           if data_points:
@@ -246,6 +264,11 @@ jobs:
                       if 'baseline_1.0x' in point:
                           f.write(f"- **{point['date']}**: {point['baseline_1.0x']['records']} records, "
                                  f"{point['baseline_1.0x']['match_rate']:.1f}% match rate\n")
+              print("✅ Benchmark trend report generated")
+          else:
+              print("ℹ️  No benchmark history yet - will be populated after first benchmark run")
+              with open('BENCHMARK_TREND.md', 'w') as f:
+                  f.write("# 📈 Benchmark Trend Analysis\n\nNo historical data available yet.\n")
           EOF
           
           cat BENCHMARK_TREND.md >> $GITHUB_STEP_SUMMARY || true

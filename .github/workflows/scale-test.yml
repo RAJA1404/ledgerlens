@@ -97,10 +97,6 @@ jobs:
           
           with open('scale_test_metrics.json', 'w') as f:
               json.dump(metrics, f, indent=2)
-          
-          print(f"RECORDS={payment_count}" >> $GITHUB_OUTPUT)
-          print(f"MATCHED={matched}" >> $GITHUB_OUTPUT)
-          print(f"MATCH_RATE={100 * matched / len(rows):.1f}%" >> $GITHUB_OUTPUT)
           EOF
       
       - name: 📤 Upload scale test results
