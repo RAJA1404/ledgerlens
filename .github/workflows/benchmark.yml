@@ -235,6 +235,7 @@ jobs:
         uses: actions/checkout@v4
       
       - name: 📊 Create trend visualization
+        continue-on-error: true
         run: |
           python << 'EOF'
           import json
@@ -256,19 +257,18 @@ jobs:
                       print(f"⚠️  Error reading {file}: {e}")
           
           # Generate markdown chart
-          if data_points:
-              with open('BENCHMARK_TREND.md', 'w') as f:
-                  f.write("# 📈 Benchmark Trend Analysis\n\n")
+          with open('BENCHMARK_TREND.md', 'w') as f:
+              f.write("# 📈 Benchmark Trend Analysis\n\n")
+              if data_points:
                   f.write("## Historical Performance\n\n")
                   for point in data_points[-10:]:  # Last 10 benchmarks
                       if 'baseline_1.0x' in point:
                           f.write(f"- **{point['date']}**: {point['baseline_1.0x']['records']} records, "
                                  f"{point['baseline_1.0x']['match_rate']:.1f}% match rate\n")
-              print("✅ Benchmark trend report generated")
-          else:
-              print("ℹ️  No benchmark history yet - will be populated after first benchmark run")
-              with open('BENCHMARK_TREND.md', 'w') as f:
-                  f.write("# 📈 Benchmark Trend Analysis\n\nNo historical data available yet.\n")
+                  print("✅ Benchmark trend report generated")
+              else:
+                  f.write("No historical data available yet.\n")
+                  print("ℹ️  No benchmark history yet - will be populated after first benchmark run")
           EOF
           
           cat BENCHMARK_TREND.md >> $GITHUB_STEP_SUMMARY || true
