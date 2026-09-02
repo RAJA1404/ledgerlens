@@ -25,6 +25,21 @@ both matched to the same wrong settlement (`stl_5124`) — see
 A system that claims perfect accuracy on messy financial data is a red flag,
 not an achievement.
 
+### Visual dashboard
+
+Open [`dashboard/index.html`](dashboard/index.html) directly in a browser —
+no server needed. It shows the same numbers above as a statement-style
+ledger: a summary view, the full exception queue (click any row for the
+AI's reasoning and evidence), and every matched record, with false matches
+and hard-rule overrides flagged in place.
+
+The data shown is embedded in the file itself, generated from the run
+described above. To refresh it after a new pipeline run:
+
+```bash
+py src/build_dashboard.py
+```
+
 ---
 
 ## The problem
@@ -152,6 +167,12 @@ fully reproducible):
 py run_all.py --regenerate
 ```
 
+To refresh the visual dashboard with whatever the latest run produced:
+
+```bash
+py src/build_dashboard.py
+```
+
 ---
 
 ## Repository structure
@@ -166,12 +187,18 @@ ledgerlens/
 │   ├── vendor_aliases.csv     # realistic vendor name variants
 │   └── ai_resolver_results.csv # cached AI resolver output (avoids re-calling API)
 ├── src/
-│   ├── generate_data.py       # synthetic data generator (seeded, reproducible)
+│   ├── generate_data.py       # synthetic data generator (seeded, reproducible, scalable via --scale)
 │   ├── normalize.py           # data cleaning / normalization
 │   ├── deterministic_match.py # rule-based matcher (no AI)
 │   ├── fuzzy_candidates.py    # candidate narrowing for ambiguous cases
-│   ├── ai_resolver.py         # LLM reasoning + hard validation
-│   └── evaluate.py            # scores results against ground truth
+│   ├── ai_resolver.py         # LLM reasoning + hard validation (batched, retry/backoff)
+│   ├── evaluate.py            # scores results against ground truth
+│   └── build_dashboard.py     # regenerates dashboard/index.html with latest results
+├── dashboard/
+│   └── index.html             # visual reconciliation ledger, self-contained, no server needed
+├── architecture/
+│   ├── pipeline_overview.svg
+│   └── ai_resolution_path.svg
 ├── run_all.py                 # single entry point, runs the full pipeline
 ├── requirements.txt
 └── README.md
