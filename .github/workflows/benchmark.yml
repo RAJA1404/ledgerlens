@@ -38,54 +38,57 @@ jobs:
       - name: 📊 Test 1: Baseline (120 records)
         run: |
           echo "=== Baseline Test (1.0x) ===" | tee -a benchmark_results/log.txt
-          time python run_all.py \
+          python run_all.py \
             --regenerate \
             --scale 1.0 \
             --data-dir data_baseline \
-            --skip-ai 2>&1 | tee -a benchmark_results/log.txt
+            --skip-ai 2>&1 | tee -a benchmark_results/log.txt || true
       
       # Test 2: Medium scale (3.0x)
       - name: 📈 Test 2: Medium Scale (360 records)
         run: |
           echo "=== Medium Scale Test (3.0x) ===" | tee -a benchmark_results/log.txt
-          time python run_all.py \
+          python run_all.py \
             --regenerate \
             --scale 3.0 \
             --data-dir data_medium \
-            --skip-ai 2>&1 | tee -a benchmark_results/log.txt
+            --skip-ai 2>&1 | tee -a benchmark_results/log.txt || true
       
       # Test 3: Large scale (10.0x)
       - name: 🚀 Test 3: Large Scale (1200 records)
         run: |
           echo "=== Large Scale Test (10.0x) ===" | tee -a benchmark_results/log.txt
-          time python run_all.py \
+          python run_all.py \
             --regenerate \
             --scale 10.0 \
             --data-dir data_large \
-            --skip-ai 2>&1 | tee -a benchmark_results/log.txt
+            --skip-ai 2>&1 | tee -a benchmark_results/log.txt || true
       
       # Test 4: API Batch Size Comparison
       - name: 🤖 Test 4: AI Batch Size Comparison (baseline scale only)
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-        if: env.GROQ_API_KEY != ''
         run: |
-          echo "=== Batch Size: 1 ===" | tee -a benchmark_results/log.txt
-          time python run_all.py \
-            --data-dir data_baseline \
-            --batch-size 1 2>&1 | tee -a benchmark_results/log.txt || true
-          
-          echo "" | tee -a benchmark_results/log.txt
-          echo "=== Batch Size: 5 ===" | tee -a benchmark_results/log.txt
-          time python run_all.py \
-            --data-dir data_baseline \
-            --batch-size 5 2>&1 | tee -a benchmark_results/log.txt || true
-          
-          echo "" | tee -a benchmark_results/log.txt
-          echo "=== Batch Size: 10 ===" | tee -a benchmark_results/log.txt
-          time python run_all.py \
-            --data-dir data_baseline \
-            --batch-size 10 2>&1 | tee -a benchmark_results/log.txt || true
+          if [ -n "$GROQ_API_KEY" ]; then
+            echo "=== Batch Size: 1 ===" | tee -a benchmark_results/log.txt
+            python run_all.py \
+              --data-dir data_baseline \
+              --batch-size 1 2>&1 | tee -a benchmark_results/log.txt || true
+            
+            echo "" | tee -a benchmark_results/log.txt
+            echo "=== Batch Size: 5 ===" | tee -a benchmark_results/log.txt
+            python run_all.py \
+              --data-dir data_baseline \
+              --batch-size 5 2>&1 | tee -a benchmark_results/log.txt || true
+            
+            echo "" | tee -a benchmark_results/log.txt
+            echo "=== Batch Size: 10 ===" | tee -a benchmark_results/log.txt
+            python run_all.py \
+              --data-dir data_baseline \
+              --batch-size 10 2>&1 | tee -a benchmark_results/log.txt || true
+          else
+            echo "⏭️  Skipping AI batch size tests (GROQ_API_KEY not set)"
+          fi
       
       - name: 📊 Collect benchmark metrics
         id: metrics

@@ -57,6 +57,7 @@ jobs:
           python << 'EOF'
           import csv
           import json
+          import os
           from datetime import datetime
           
           # Count records
@@ -69,12 +70,20 @@ jobs:
             matched = sum(1 for r in rows if r.get('final_status') == 'MATCHED')
             exceptions = len(rows) - matched
           
-          # Output metrics
-          print(f"SCALE=${{ github.event.inputs.scale || '3.0' }}" >> $GITHUB_ENV)
+          # Calculate metrics
+          scale = "${{ github.event.inputs.scale || '3.0' }}"
+          match_rate = 100 * matched / len(rows) if rows else 0
+          
           print(f"RECORDS={payment_count}")
           print(f"MATCHED={matched}")
           print(f"EXCEPTIONS={exceptions}")
-          print(f"MATCH_RATE={100 * matched / len(rows):.1f}%")
+          print(f"MATCH_RATE={match_rate:.1f}%")
+          
+          # Write to GITHUB_OUTPUT for next steps
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+            f.write(f"RECORDS={payment_count}\n")
+            f.write(f"MATCHED={matched}\n")
+            f.write(f"MATCH_RATE={match_rate:.1f}%\n")
           
           # Save for summary
           metrics = {
