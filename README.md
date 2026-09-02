@@ -40,6 +40,14 @@ described above. To refresh it after a new pipeline run:
 py src/build_dashboard.py
 ```
 
+**Optional — serve it on localhost instead of opening the file directly**
+(useful for demo recording, not required for the dashboard to work):
+
+```bash
+py -m http.server 8000 --directory dashboard
+# then open http://localhost:8000
+```
+
 ---
 
 ## The problem
