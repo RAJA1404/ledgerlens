@@ -68,7 +68,7 @@ jobs:
           "
       
       - name: 📈 Upload deterministic results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: deterministic-results
           path: data/
@@ -127,7 +127,7 @@ jobs:
           ) || true
       
       - name: 📈 Upload full pipeline results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: full-pipeline-results
           path: data/

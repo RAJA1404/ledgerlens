@@ -115,7 +115,7 @@ jobs:
           EOF
       
       - name: 📤 Upload scale test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: scale-test-results-${{ github.event.inputs.scale || '3.0' }}x
           path: |
