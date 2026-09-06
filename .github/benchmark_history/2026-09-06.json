@@ -1,0 +1,17 @@
+{
+  "baseline_1.0x": {
+    "records": 117,
+    "matched": 107,
+    "match_rate": 91.45299145299145
+  },
+  "medium_3.0x": {
+    "records": 351,
+    "matched": 321,
+    "match_rate": 91.45299145299145
+  },
+  "large_10.0x": {
+    "records": 1168,
+    "matched": 1070,
+    "match_rate": 91.60958904109589
+  }
+}
